@@ -61,7 +61,7 @@ function UserInput({ tasks, setTasks }) {
           onChange={(e) => setValue(e.target.value)}
         ></input>
         <button type="submit" className="todo-btn">
-          Submit
+          Add
         </button>
       </form>
     </div>
