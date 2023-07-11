@@ -1,17 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
+import { ReactComponent as DeleteIcon } from "./trash-2.svg";
 const tasksToAdd = [
-  { title: "Washing maschine", id: 1, isUrgent: true },
-  { title: "Groceries", id: 2, isUrgent: false },
-  { title: "Walk with dog", id: 3, isUrgent: true },
-  { title: "Walk with kangaroo", id: 4, isUrgent: false },
-  { title: "Jog with alligator", id: 3, isUrgent: false },
-  { title: "Shop shoes", id: 4, isUrgent: true },
-  { title: "Training in sda", id: 6, isUrgent: true },
-  { title: "Cats and dogs", id: 7, isUrgent: false },
-  { title: "TASKS IN FED", id: 8, isUrgent: true },
-  { title: "Dinosaur", id: 3, isUrgent: false },
+  { title: "Load washing maschine", id: 1, isUrgent: true, isComplete: true },
+  {
+    title: "Groceries: milk and bread",
+    id: 2,
+    isUrgent: false,
+    isComplete: false,
+  },
+  { title: "Walk with dog", id: 3, isUrgent: true, isComplete: true },
+  { title: "Buy HDMI cable", id: 4, isUrgent: false, isComplete: false },
+  { title: "Register sports event", id: 3, isUrgent: false, isComplete: false },
+  { title: "Shop shoes", id: 4, isUrgent: true, isComplete: true },
 ];
 
 function List(props) {
@@ -20,12 +22,20 @@ function List(props) {
       return oldvalues.filter((task) => task.id !== id);
     });
   };
+  const markDone = (id) => {};
   const taskList = props.tasks.map((task) => (
-    <li style={{ color: task.isUrgent ? "red" : "green" }}>
+    <li
+      className={`task-item ${task.isUrgent ? "urgent" : ""} ${
+        task.isComplete ? "complete" : ""
+      }`}
+      s
+    >
       {task.title}{" "}
       <div className="task-controls">
-        <input type="checkbox"></input>
-        <button onClick={() => deleteById(task.id)}>Delete</button>
+        <input type="checkbox" value="yes"></input>
+        <button onClick={() => deleteById(task.id)}>
+          <DeleteIcon />
+        </button>
       </div>
     </li>
   ));
