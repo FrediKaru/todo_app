@@ -1,22 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 const tasksToAdd = [
-  { title: "Washing maschine // black", id: 1, isUrgent: true },
+  { title: "Washing maschine", id: 1, isUrgent: true },
   { title: "Groceries", id: 2, isUrgent: false },
   { title: "Walk with dog", id: 3, isUrgent: true },
-  { title: "Walk", id: 4, isUrgent: false },
-  { title: "Jog", id: 3, isUrgent: false },
+  { title: "Walk with kangaroo", id: 4, isUrgent: false },
+  { title: "Jog with alligator", id: 3, isUrgent: false },
   { title: "Shop shoes", id: 4, isUrgent: true },
-  { title: "Jog", id: 5, isUrgent: false },
   { title: "Training in sda", id: 6, isUrgent: true },
   { title: "Cats and dogs", id: 7, isUrgent: false },
   { title: "TASKS IN FED", id: 8, isUrgent: true },
-  { title: "g", id: 9, isUrgent: false },
-  { title: "Dishes", id: 10, isUrgent: false },
-  { title: "Jg", id: 11, isUrgent: false },
-  { title: "Jog", id: 12, isUrgent: false },
-  { title: "Jog", id: 13, isUrgent: false },
   { title: "Dinosaur", id: 3, isUrgent: false },
 ];
 
@@ -28,20 +22,38 @@ function List(props) {
   };
   const taskList = props.tasks.map((task) => (
     <li style={{ color: task.isUrgent ? "red" : "green" }}>
-      {task.title} <button onClick={() => deleteById(task.id)}>Delete</button>
+      {task.title}{" "}
+      <div className="task-controls">
+        <input type="checkbox"></input>
+        <button onClick={() => deleteById(task.id)}>Delete</button>
+      </div>
     </li>
   ));
   return <ul>{taskList}</ul>;
 }
 function UserInput({ tasks, setTasks }) {
-  function addTask() {
-    setTasks([...tasks, { title: "Elephant", id: Math.random() }]);
-  }
+  const [value, setValue] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setTasks([...tasks, { title: value, id: Math.random() }]);
+    setValue("");
+  };
 
   return (
-    <div>
-      <input type="text"></input>
-      <button onClick={addTask}>Submit</button>
+    <div className="input-controls">
+      <form className="TodoForm" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="todo-input"
+          value={value}
+          placeholder="What is the task today?"
+          onChange={(e) => setValue(e.target.value)}
+        ></input>
+        <button type="submit" className="todo-btn">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

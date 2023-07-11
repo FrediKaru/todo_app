@@ -7,3 +7,47 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.App {
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+.App-header {
+  padding: 40px;
+}
+.input-controls {
+  width: 100%;
+
+  display: inline-flex;
+  justify-content: space-between;
+}
+.input-controls input {
+  width: 70%;
+  height: 100%;
+}
+.input-controls button {
+  width: 25%;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+li {
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 25px;
+  width: 100%;
+  padding-left: 10px;
+}
+.App h1 {
+  font-weight: 500;
+}
+.task-controls {
+  display: flex;
+}
+.task-controls button {
+}
